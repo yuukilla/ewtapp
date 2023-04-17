@@ -19,4 +19,4 @@ At the moment only issues are welcome.
 As soon as I graduate, contributing will be fully open.
 
 ## License
-...
+[MIT](LICENSE) 
