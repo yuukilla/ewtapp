@@ -1,7 +1,8 @@
-import app from "./app";
 import { config } from "dotenv";
-
 config();
+
+import app from "./app";
+
 
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3003;
 
