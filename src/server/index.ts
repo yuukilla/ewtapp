@@ -1,14 +1,20 @@
-import express from "express";
-import { api } from "./api";
+import app from "./app";
+import { config } from "dotenv";
 
-const cors = require("cors");
-const app = express();
+config();
 
-app.use(cors);
-app.use(api);
+const port = process.env.PORT ? parseInt(process.env.PORT) : 3003;
 
-app.listen(
-  3002, () => {
-    console.log("Backend server running at: http://localhost:3002");
-  }
-)
+app.listen(port, () => {
+  console.log(`Backend Server initialized listening on port ${port}`);
+})
+
+process.on("SIGTERM", () => {
+  console.log("SIGTERM signal received: closing HTTP server.")
+  process.exit()
+})
+
+process.on("SIGINT", () => {
+  console.log("SIGINT signal received: closing HTTP server.")
+  process.exit()
+})
