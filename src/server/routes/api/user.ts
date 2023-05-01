@@ -10,7 +10,7 @@ const router = Router();
 
 router.get("/", authenticate, userGet);
 
-router.post("/", authenticate, userUpdateValidator, userUpdate);
+router.put("/", authenticate, userUpdateValidator, userUpdate);
 
 export default router;
 
