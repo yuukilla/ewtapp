@@ -1,39 +1,45 @@
 import { NextFunction, Request, Response } from "express";
 import createUserToken from "../../utils/auth/createUserToken";
 import userCreatePrisma from "../../utils/db/user/userCreatePrisma";
-import { hashPassword } from "../../utils/hashPasswords";
+import { hashPassword } from "../../utils/hashPassword";
 import userViewer from "../../view/userViewer";
 
 /**
- * Users controller thats registers the user with
- * information given in the body of the request.
+ * Users controller that registers the user with information given in the body
+ * of the request.
  *
  * @param req Request
- * @param res Request
+ * @param res Response
  * @param next NextFunction
  * @returns
  */
 export default async function usersRegister(
-  req: Request,
-  res: Response,
+  req : Request,
+  res : Response,
   next: NextFunction
 ) {
-  const { username, firstName, lastName, email, password } = req.body.user;
+  const {
+    username,
+    email,
+    firstName,
+    lastName,
+    password
+  } = req.body.user;
+
   try {
-    // Hash password
-    const hashed = hashPassword(password);
+    // Create password hash 
+    const hashedPassword = hashPassword(password);
 
     // Create the new user on the database
     const user = await userCreatePrisma(
-      username, 
-      firstName, 
-      lastName, 
-      email, 
-      hashed, 
-      "USER"
+      username,
+      email,
+      firstName,
+      lastName,
+      hashedPassword
     );
 
-    // Create the authentication token for future use
+    // Create the authentication token for future use 
     const token = createUserToken(user);
 
     // Create user view with the authentication token
@@ -44,3 +50,4 @@ export default async function usersRegister(
     return next(error);
   }
 }
+

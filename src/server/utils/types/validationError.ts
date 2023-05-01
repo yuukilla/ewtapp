@@ -1,5 +1,5 @@
 export interface ValidationError {
-  body?: Array<string>;
+  body?:  Array<string>;
   query?: Array<string>;
 }
 

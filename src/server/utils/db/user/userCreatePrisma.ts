@@ -1,22 +1,22 @@
 import prisma from "../prisma";
 
 export default async function userCreatePrisma(
-  username:  string,
-  firstName: string,
-  lastName:  string,
-  email:     string,
-  password:  string,
-  role:      string
+  username:     string,
+  email:        string,
+  firstName:    string,
+  lastName:     string,
+  password:     string,
 ) {
   const user = await prisma.user.create({
     data: {
       username,
+      email,
       firstName,
       lastName,
-      email,
-      password,
-      role
+      password
     }
   })
+
   return user;
 }
+

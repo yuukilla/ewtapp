@@ -11,7 +11,7 @@ function Rat(props:any) {
 
 export const Error = () => {
   return (
-    <div className="h-screen bg-scheme-900 text-white font-poppins">
+    <div className="h-screen font-poppins">
       <Canvas camera={{ position: [-0.5, 1, 2] }} className="">
         <directionalLight position={[-3, 1, 5]} intensity={1} />
         <ambientLight />

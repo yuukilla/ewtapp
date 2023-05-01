@@ -24,7 +24,9 @@ export const Landing = () => {
   // )
   return (
     <>
-      <section className="bg-gray-900 h-screen border">
+      <section className="bg-gray-900 h-screen border flex items-center justify-center">
+        <p className="font-poppins text-5xl">Placeholder</p>
+        <Link to={ routes.join }>Get started</Link>
       </section>
       <section className="bg-gray-500 h-screen border">
       </section>

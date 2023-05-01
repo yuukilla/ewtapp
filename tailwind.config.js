@@ -21,6 +21,8 @@ module.exports = withMT({
       }
     }
   },
-  plugins: [],
+  plugins: [
+    require("@catppuccin/tailwindcss")
+  ],
 })
 

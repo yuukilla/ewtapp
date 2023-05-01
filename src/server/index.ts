@@ -3,19 +3,18 @@ config();
 
 import app from "./app";
 
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3003;
 
-const port = process.env.PORT ? parseInt(process.env.PORT) : 3003;
-
-app.listen(port, () => {
-  console.log(`Backend Server initialized listening on port ${port}`);
-})
+app.listen(PORT, () => {
+  console.log(`Backend server initialized listening on port ${PORT}`)
+});
 
 process.on("SIGTERM", () => {
-  console.log("SIGTERM signal received: closing HTTP server.")
-  process.exit()
-})
+  console.log("SIGTERM signal received.");
+  process.exit();
+});
 
 process.on("SIGINT", () => {
-  console.log("SIGINT signal received: closing HTTP server.")
-  process.exit()
-})
+  console.log("SIGINT signal received.");
+  process.exit();
+});
