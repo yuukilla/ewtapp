@@ -1,0 +1,16 @@
+PUT {{URL}}/api/user
+Content-Type: application/json
+X-Requested-With: XMLHttpRequest
+Authorization: Bearer {{token}}
+
+{
+  "user": {
+      "password": "dummypassword"
+    }
+}
+
+{%
+  local body = context.json_decode(context.result.body)
+
+  context.set_env("token", body.user.token)
+%}

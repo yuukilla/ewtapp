@@ -1,0 +1,17 @@
+POST {{URL}}/api/users/login/
+Content-Type: application/json
+
+{
+  "user": {
+    "username": "dummy",
+    "password": "dummy"
+  }
+}
+
+{%
+  
+  local body = context.json_decode(context.result.body)
+
+  context.set_env("token", body.user.token)
+
+%}
