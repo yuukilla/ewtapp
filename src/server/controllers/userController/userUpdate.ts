@@ -2,6 +2,7 @@ import { NextFunction, Response } from "express";
 import { Request } from "express-jwt";
 import createUserToken from "../../utils/auth/createUserToken";
 import userUpdatePrisma from "../../utils/db/user/userUpdatePrisma";
+import { hashPassword } from "../../utils/hashPassword";
 import userViewer from "../../view/userViewer";
 
 /**
@@ -24,6 +25,9 @@ export default async function userUpdate(
   const info     = req.body.user;
 
   try {
+    // create password hash
+    info.password = hashPassword(info.password);
+
     // Get current user
     const user = await userUpdatePrisma(username, info);
     if ( !user ) return res.sendStatus(404);
